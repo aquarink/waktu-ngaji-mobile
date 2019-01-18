@@ -5,6 +5,8 @@ import 'screens/lainnya.dart';
 import 'screens/terdekat.dart';
 import 'screens/profilustadz.dart';
 
+import 'screens/waktusolat_route.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -13,7 +15,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Pebri - Waktu Ngaji By Flutter',
+      theme: ThemeData(
+        primarySwatch: Colors.brown
+      ),
       home: Home(),
+      routes: <String , WidgetBuilder> {
+        "/WaktuSolat" : (BuildContext context) => WaktuSolatRoute()
+      },
     );
   }
 }
@@ -28,7 +36,7 @@ class Home extends StatefulWidget {
 class _MainStates extends State<Home> {
   int _currentIndex = 0;
 
-  // List untuk penentuan index nya - effect di baris 96 
+  // List untuk penentuan index nya - effect di baris 96
   // body: _children[_currentIndex],
 
   final List<Widget> _screens = [
@@ -40,6 +48,7 @@ class _MainStates extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    print("Context " + context.toString());
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -68,27 +77,38 @@ class _MainStates extends State<Home> {
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              new UserAccountsDrawerHeader(accountName: new Text("John Doe")),
+              UserAccountsDrawerHeader(
+                accountName: new Text("John Doe"),
+              ),
               ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('First Menu Item'),
-                onTap: () {},
+                leading: Icon(Icons.timelapse),
+                title: Text('Waktu Solat'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/WaktuSolat');
+                },
               ),
               Divider(
                 height: 2.0,
               ),
               ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Second Menu Item'),
-                onTap: () {},
+                leading: Icon(Icons.control_point_duplicate),
+                title: Text('Daftar Akun'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/DaftarAkun');
+                },
               ),
               Divider(
                 height: 2.0,
               ),
               ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('About'),
-                onTap: () {},
+                leading: Icon(Icons.input),
+                title: Text('Masuk Akun'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).pushNamed('/MasukAkun');
+                },
               ),
             ],
           )),

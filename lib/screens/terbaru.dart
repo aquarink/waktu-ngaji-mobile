@@ -5,7 +5,7 @@ class terbaru extends StatelessWidget {
     Widget build(BuildContext context) {
       return Container(
         child: Center(
-          child: Text('CENTERRRR'),
+          child: Text('JADWAL BARU'),
         ),
       );
     }
